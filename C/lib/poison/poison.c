@@ -81,3 +81,16 @@ void poison_oldify(Poison *p)
 {
     p->life--;
 }
+
+int poison_is_dead(Poison *p)
+{
+    return p->life <= 0;
+}
+
+void poison_copy(Poison *dst, Poison *src)
+{
+    dst->type = src->type;
+    dst->character = src->character;
+    dst->life = src->life;
+    position_copy(&(dst->position), &(src->position));
+}

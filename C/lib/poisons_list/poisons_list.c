@@ -31,7 +31,7 @@ void poisons_list_dump(PoisonsList *pl)
     int i;
     for (i=0; i<pl->size; i++) {
         if (pl->active[i]) {
-            printf("POISON # %d\n", (i+1));
+            printf("POISON # %d\n", i);
             poison_dump(&(pl->poisons[i]));
             putchar('\n');
         }
@@ -47,47 +47,48 @@ void poisons_list_destroy(PoisonsList *pl)
     pl->size = 0;
 }
 
+void poisons_list_oldify(PoisonsList *pl)
+{
+    int i;
+    for (i=0; i<pl->size; i++) {
+        if (pl->active[i]) {
+            poison_oldify(&(pl->poisons[i]));
+            if (poison_is_dead(&(pl->poisons[i]))) {
+                pl->active[i] = 0;
+            }
+        }
+    }
+}
+
+int poisons_list_find_free_index(PoisonsList *pl)
+{
+    int i = 0;
+
+    while (pl->active[i]!=0 && i<pl->size) {
+        i++;
+    }
+
+    if (i<pl->size) return i;
+
+    return -1;
+}
+
+int poisons_list_add(PoisonsList *pl, Poison *p)
+{
+    int i = poisons_list_find_free_index(pl);
+    if (i==-1) return -1;
+
+    poison_copy(&(pl->poisons[i]), p);
+    pl->active[i] = 1;
+    return 0;
+}
+
+
+
+
+
 
 /*
-void poison_init(Poison *p, int size)
-{
-  srand(time(NULL));
-
-  int i;
-  for (i=0; i<size; i++) {
-    (*(p+i)).active = 0;
-  }
-}
-
-int poison_num_free_slot(Poison *p, int size)
-{
-  int i;
-  int counter = 0;
-
-  for (i=0; i<size; i++) {
-    if ((*(p+i)).active==0) {
-      counter++;
-    }
-  }
-
-  return counter;
-}
-
-int poison_can_create(Poison *p, int size)
-{
-  int i;
-
-  for (i=0; i<size; i++) {
-    if ((*(p+i)).active==0) {
-      return i;
-    }
-  }
-
-  return -1;
-}
-
-
-
 void poison_destroy(Poison *p)
 {
   p->active = 0;
@@ -98,21 +99,4 @@ void poison_print(Poison *p)
 {
   mvaddch(p->position.y, p->position.x, p->character);
 }
-
-void poison_oldfy(Poison *p, int size)
-{
-  int i;
-  for (i=0; i<size; i++) {
-    if ((*(p+i)).active) {
-      poison_age(p+i);
-    }
-  }
-}
-
-void poison_age(Poison *p)
-{
-  p->life--;
-  if (p->life<=0) poison_destroy(p);
-}
-
 */

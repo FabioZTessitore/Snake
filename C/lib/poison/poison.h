@@ -21,5 +21,7 @@ void poison_init(int screen_x, int screen_y);
 Poison poison_make();
 void poison_dump(Poison *p);
 void poison_oldify(Poison *p);
+int poison_is_dead(Poison *p);
+void poison_copy(Poison *dst, Poison *src);
 
 #endif

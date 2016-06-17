@@ -22,3 +22,9 @@ void position_dump(Position *pos)
 {
   printf("(%d, %d)", pos->x, pos->y);
 }
+
+void position_copy(Position *dst, Position *src)
+{
+    dst->x = src->x;
+    dst->y = src->y;
+}

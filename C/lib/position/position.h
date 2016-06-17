@@ -33,4 +33,10 @@ int position_equals(Position *pos1, Position *pos2);
  */
 void position_dump(Position *pos);
 
+/* position_copy:
+ *
+ * copia una Position
+ */
+void position_copy(Position *dst, Position *src);
+
 #endif
