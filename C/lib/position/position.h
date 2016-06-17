@@ -27,10 +27,10 @@ Position position_make(int x, int y);
 int position_equals(Position *pos1, Position *pos2);
 
 
-/* position_print:
+/* position_dump:
  *
  * stampa per debug
  */
-void position_print(Position *pos);
+void position_dump(Position *pos);
 
 #endif

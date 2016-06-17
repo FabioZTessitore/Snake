@@ -18,7 +18,7 @@ int position_equals(Position *pos1, Position *pos2)
   return (pos1->x==pos2->x && pos1->y==pos2->y);
 }
 
-void position_print(Position *pos)
+void position_dump(Position *pos)
 {
   printf("(%d, %d)", pos->x, pos->y);
 }

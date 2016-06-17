@@ -19,21 +19,21 @@ int main()
     p3 = position_make(x1, y1);
 
     printf("Stampa la posizione p1(%d, %d)\n", x1, y1);
-    position_print(&p1);
+    position_dump(&p1);
     putchar('\n');
 
     printf("Le posizioni p1");
-    position_print(&p1);
+    position_dump(&p1);
     printf(" e p2");
-    position_print(&p2);
+    position_dump(&p2);
     printf(" sono uguali? ");
     printf( position_equals(&p1, &p2) ? "SI" : "NO");
     putchar('\n');
 
     printf("Le posizioni p1");
-    position_print(&p1);
+    position_dump(&p1);
     printf(" e p3");
-    position_print(&p3);
+    position_dump(&p3);
     printf(" sono uguali? ");
     printf( position_equals(&p1, &p3) ? "SI" : "NO");
     putchar('\n');
