@@ -2,13 +2,18 @@ CC=gcc
 CFLAGS=-Wall -ansi -pedantic
 PROGRAM=test_snake
 
-test_snake: ../position/position.o test_snake.o snake.o
+all: snake.o position.o
 
+test_snake: ../position/position.o test_snake.o snake.o
 test_snake.o: test_snake.c
+
 snake.o: snake.c
 
+position.o:
+	cd ../position && $(MAKE) all
+
 clean:
-	cd ../position && make clean
+	cd ../position && $(MAKE) clean
 	rm -f *.o
 
 uninstall:
