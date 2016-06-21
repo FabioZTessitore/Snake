@@ -28,3 +28,9 @@ void position_copy(Position *dst, Position *src)
     dst->x = src->x;
     dst->y = src->y;
 }
+
+void position_move(Position *pos, int dx, int dy)
+{
+    pos->x += dx;
+    pos->y += dy;
+}

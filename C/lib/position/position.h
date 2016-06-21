@@ -39,4 +39,10 @@ void position_dump(Position *pos);
  */
 void position_copy(Position *dst, Position *src);
 
+/* position_move:
+ *
+ * incrementa una Position di dx, dy
+ */
+void position_move(Position *pos, int dx, int dy);
+
 #endif
