@@ -171,27 +171,6 @@ int snake_pos_in(Snake *snake, Position *pos)
 
 
 /*
-void snake_print(Snake *snake)
-{
-  POS current = snake_get_head_pos(snake);
-  mvaddch(current.y, current.x, '@');
-
-  int i;
-  for (i=1; i<snake_get_len(snake); i++) {
-    current = *(snake_get_cell(snake, i));
-    mvaddch(current.y, current.x, 'm');
-  }
-}
-
-void snake_unprint(Snake *snake)
-{
-  POS current;
-  int i;
-  for (i=0; i<snake_get_len(snake); i++) {
-    current = snake->cell[i];
-    mvaddch(current.y, current.x, ' ');
-  }
-}
 
 int snake_wall_impact(Snake *snake, int screen_x, int screen_y)
 {
