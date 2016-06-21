@@ -20,7 +20,6 @@ void poisons_list_init(PoisonsList *pl, int size);
 void poisons_list_dump(PoisonsList *pl);
 void poisons_list_destroy(PoisonsList *pl);
 void poisons_list_oldify(PoisonsList *pl);
-int poisons_list_find_free_index(PoisonsList *pl);
 int poisons_list_add(PoisonsList *pl, Poison *p);
 
 #endif

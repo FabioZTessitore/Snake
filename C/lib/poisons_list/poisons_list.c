@@ -5,6 +5,8 @@
 #include "../poison/poison.h"
 #include "poisons_list.h"
 
+int poisons_list_find_free_index(PoisonsList *pl);
+
 void poisons_list_init(PoisonsList *pl, int size)
 {
     int i;
@@ -93,23 +95,5 @@ int poisons_list_add(PoisonsList *pl, Poison *p)
 
     poison_copy(&(pl->poisons[i]), p);
     pl->active[i] = 1;
-    return 0;
+    return i;
 }
-
-
-
-
-
-
-/*
-void poison_destroy(Poison *p)
-{
-  p->active = 0;
-  mvaddch(p->position.y, p->position.x, ' ');
-}
-
-void poison_print(Poison *p)
-{
-  mvaddch(p->position.y, p->position.x, p->character);
-}
-*/
