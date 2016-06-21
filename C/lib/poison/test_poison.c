@@ -6,7 +6,7 @@ int main()
     int i;
     Poison p;
 
-    poison_init(24, 5);  /* schermo 24 colonne e 5 righe */
+    poison_init();
 
     for (i=0; i<3; i++) {
         printf("*** POISON ***\n");

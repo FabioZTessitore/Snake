@@ -12,11 +12,11 @@
 
 typedef struct {
     Poison *poisons;
+    int list_size;
     int *active;
-    int size;
 } PoisonsList;
 
-void poisons_list_init(PoisonsList *pl, int size, int screen_x, int screen_y);
+void poisons_list_init(PoisonsList *pl, int size);
 void poisons_list_dump(PoisonsList *pl);
 void poisons_list_destroy(PoisonsList *pl);
 void poisons_list_oldify(PoisonsList *pl);

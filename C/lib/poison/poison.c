@@ -1,14 +1,12 @@
 /* poison.c */
 
 #include <stdio.h>
-#include "../position/position.h"
 #include "../random/random.h"
 #include "poison.h"
 
 int poison_random_type();
 int poison_random_life();
 int poison_random_character(int type);
-Position poison_random_position();
 
 /* I caratteri utilizzati per veleni e frutti,
  * devono essere nello stesso numero
@@ -19,15 +17,12 @@ char poisons_characters[2][3] = {
 };
 const int number_characters = sizeof(poisons_characters[0])/sizeof(char);
 
-/* dimensione dello schermo */
-static int screen_x_size = 0;
-static int screen_y_size = 0;
+const int min_life = 20;
+const int max_life = 100;
 
-void poison_init(screen_x, screen_y)
+void poison_init()
 {
     random_init();
-    screen_x_size = screen_x;
-    screen_y_size = screen_y;
 }
 
 int poison_random_type()
@@ -40,21 +35,13 @@ int poison_random_type()
 
 int poison_random_life()
 {
-    return random_between(20, 100);
+    return random_between(min_life, max_life);
 }
 
 int poison_random_character(int type)
 {
     int index = random_between(0, number_characters);
     return poisons_characters[type][index];
-}
-
-Position poison_random_position(int screen_x, int screen_y)
-{
-    return position_make(
-        random_between(0, screen_x),
-        random_between(0, screen_y)
-    );
 }
 
 Poison poison_make()
@@ -64,7 +51,6 @@ Poison poison_make()
     p.type = poison_random_type();
     p.character = poison_random_character(p.type);
     p.life = poison_random_life();
-    p.position = poison_random_position(screen_x_size, screen_y_size);
 
     return p;
 }
@@ -74,7 +60,6 @@ void poison_dump(Poison *p)
   printf("type: %d\n", p->type);
   printf("char: %c\n", p->character);
   printf("life: %d\n", p->life);
-  printf("pos: "); position_dump(&p->position); putchar('\n');
 }
 
 void poison_oldify(Poison *p)
@@ -92,5 +77,4 @@ void poison_copy(Poison *dst, Poison *src)
     dst->type = src->type;
     dst->character = src->character;
     dst->life = src->life;
-    position_copy(&(dst->position), &(src->position));
 }

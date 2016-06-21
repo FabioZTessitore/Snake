@@ -1,6 +1,5 @@
 CC=gcc
 CFLAGS=-Wall -ansi -pedantic
-LDFLAGS=
 PROGRAM=test_position
 
 test_position: test_position.o position.o

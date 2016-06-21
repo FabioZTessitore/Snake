@@ -5,31 +5,40 @@
 #include "../poison/poison.h"
 #include "poisons_list.h"
 
-void poisons_list_init(PoisonsList *pl, int size, int screen_x, int screen_y)
+void poisons_list_init(PoisonsList *pl, int size)
 {
     int i;
 
-    poison_init(screen_x, screen_y);
+    poison_init();
 
     if (size<=0) {
         pl->poisons = NULL;
         pl->active = NULL;
-        pl->size = 0;
+        pl->list_size = 0;
         return;
     }
 
+    /* alloca memoria per i Poison, ma non li crea */
     pl->poisons = (Poison*)malloc(sizeof(Poison)*size);
+    if (!pl->poisons) {
+        fprintf(stderr, "Impossibile allocare memoria\n");
+        exit(-1);
+    }
     pl->active = (int*)malloc(sizeof(int)*size);
+    if (!pl->active) {
+        fprintf(stderr, "Impossibile allocare memoria\n");
+        exit(-1);
+    }
     for (i=0; i<size; i++) {
         pl->active[i] = 0;
     }
-    pl->size = size;
+    pl->list_size = size;
 }
 
 void poisons_list_dump(PoisonsList *pl)
 {
     int i;
-    for (i=0; i<pl->size; i++) {
+    for (i=0; i<pl->list_size; i++) {
         if (pl->active[i]) {
             printf("POISON # %d\n", i);
             poison_dump(&(pl->poisons[i]));
@@ -40,17 +49,21 @@ void poisons_list_dump(PoisonsList *pl)
 
 void poisons_list_destroy(PoisonsList *pl)
 {
-    free(pl->poisons);
-    pl->poisons = NULL;
-    free(pl->active);
-    pl->active = NULL;
-    pl->size = 0;
+    if (pl->poisons) {
+        free(pl->poisons);
+        pl->poisons = NULL;
+    }
+    if (pl->active) {
+        free(pl->active);
+        pl->active = NULL;
+    }
+    pl->list_size = 0;
 }
 
 void poisons_list_oldify(PoisonsList *pl)
 {
     int i;
-    for (i=0; i<pl->size; i++) {
+    for (i=0; i<pl->list_size; i++) {
         if (pl->active[i]) {
             poison_oldify(&(pl->poisons[i]));
             if (poison_is_dead(&(pl->poisons[i]))) {
@@ -64,11 +77,11 @@ int poisons_list_find_free_index(PoisonsList *pl)
 {
     int i = 0;
 
-    while (pl->active[i]!=0 && i<pl->size) {
+    while (pl->active[i]!=0 && i<pl->list_size) {
         i++;
     }
 
-    if (i<pl->size) return i;
+    if (i<pl->list_size) return i;
 
     return -1;
 }
