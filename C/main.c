@@ -5,6 +5,8 @@
 #include "./nc_lib/nc_snake/nc_snake.h"
 #include "./nc_lib/nc_poisons_list/nc_poisons_list.h"
 
+void init();
+
 int main()
 {
     int end = 0;
@@ -21,11 +23,7 @@ int main()
     Poison p = poison_make();
     Position pos = position_make(10, 10);
 
-    initscr();
-    curs_set(0);
-    cbreak();
-    noecho();
-    nodelay(stdscr, TRUE);
+    init();
 
     snake_init(&snake, snake_len, &start, direction);
     nc_poisons_list_add(&nc_pl, &p, &pos);
@@ -44,4 +42,13 @@ int main()
 
     endwin();
     return 0;
+}
+
+void init()
+{
+    initscr();
+    curs_set(0);
+    cbreak();
+    noecho();
+    nodelay(stdscr, TRUE);
 }
