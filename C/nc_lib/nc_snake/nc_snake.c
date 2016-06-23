@@ -26,3 +26,13 @@ void nc_snake_unprint(Snake *snake)
         mvaddch(current->y, current->x, ' ');
     }
 }
+
+int nc_snake_wall_impact(Snake *snake, int screen_x, int screen_y)
+{
+    Position* head = snake_get_head_pos(snake);
+
+    if (head->x<=0 || head->x>=screen_x-1 || head->y<=0 || head->y>=screen_y-1)
+        return 1;
+
+    return 0;
+}

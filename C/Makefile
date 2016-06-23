@@ -3,8 +3,11 @@ CFLAGS=-Wall -ansi -pedantic
 LDFLAGS=-lncurses
 PROGRAM=snake
 
-all: main.o nc_snake.o nc_poisons_list.o
+all: main.o random.o nc_snake.o nc_poisons_list.o
 	$(CC) $(LDFLAGS) *.o -o $(PROGRAM)
+
+random.o:
+	cd ./lib/random/ && $(MAKE) all && cp ./*.o ../../
 
 nc_snake.o:
 	cd ./nc_lib/nc_snake && $(MAKE) all && cp ./*.o ../../
@@ -15,6 +18,7 @@ nc_poisons_list.o:
 main.o: main.c
 
 clean:
+	cd ./lib/random && $(MAKE) clean
 	cd ./nc_lib/nc_poisons_list && $(MAKE) clean
 	cd ./nc_lib/nc_snake && $(MAKE) clean
 	rm -f *.o

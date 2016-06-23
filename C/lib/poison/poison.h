@@ -8,6 +8,9 @@
  * Un veleno o un frutto
  */
 
+#define VELENO 0
+#define FRUTTO 1
+
 typedef struct {
   int type;
   int character;

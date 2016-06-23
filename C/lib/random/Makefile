@@ -3,7 +3,7 @@ CFLAGS=-Wall -ansi -pedantic
 
 all: random.o
 
-random.o: random.c
+random.o: random.h random.c
 
 clean:
 	rm -f *.o

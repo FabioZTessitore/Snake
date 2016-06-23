@@ -30,8 +30,4 @@ void snake_shrink(Snake *snake);
 int snake_eat_itself(Snake *snake);
 int snake_pos_in(Snake *snake, Position *pos);
 
-/*
-int snake_wall_impact(Snake *snake, int screen_x, int screen_y);
-*/
-
 #endif

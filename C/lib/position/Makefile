@@ -4,7 +4,7 @@ PROGRAM=test_position
 
 all: position.o
 
-position.o: position.c
+position.o: position.h position.c
 
 test_position: test_position.o position.o
 test_position.o: test_position.c

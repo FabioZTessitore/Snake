@@ -4,7 +4,7 @@ PROGRAM=test_snake
 
 all: snake.o position.o
 
-snake.o: snake.c
+snake.o: snake.h snake.c
 
 position.o:
 	cd ../position && $(MAKE) all && cp ./*.o ../snake/

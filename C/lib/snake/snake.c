@@ -168,19 +168,3 @@ int snake_pos_in(Snake *snake, Position *pos)
 
     return 0;
 }
-
-
-/*
-
-int snake_wall_impact(Snake *snake, int screen_x, int screen_y)
-{
-  POS head = snake_get_head_pos(snake);
-
-  if (head.x==0 || head.x==screen_x-1 ||
-    head.y==0 || head.y==screen_y-1)
-    return 1;
-
-  return 0;
-}
-
-*/

@@ -3,7 +3,7 @@ CFLAGS=-Wall -ansi -pedantic
 
 all: nc_snake.o snake.o
 
-nc_snake.o: nc_snake.c
+nc_snake.o: nc_snake.h nc_snake.c
 
 snake.o:
 	cd ../../lib/snake && $(MAKE) all && cp ./*.o ../../nc_lib/nc_snake/

@@ -4,7 +4,7 @@ PROGRAM=test_poison
 
 all:  poison.o random.o
 
-poison.o: poison.c
+poison.o: poison.h poison.c
 
 random.o:
 	cd ../random && $(MAKE) all && cp ./*.o ../poison/
