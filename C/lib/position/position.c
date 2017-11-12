@@ -5,12 +5,12 @@
 
 Position position_make(int x, int y)
 {
-    Position p;
+  Position p;
 
-    p.x = x;
-    p.y = y;
+  p.x = x;
+  p.y = y;
 
-    return p;
+  return p;
 }
 
 int position_equals(Position *pos1, Position *pos2)
@@ -25,12 +25,12 @@ void position_dump(Position *pos)
 
 void position_copy(Position *dst, Position *src)
 {
-    dst->x = src->x;
-    dst->y = src->y;
+  dst->x = src->x;
+  dst->y = src->y;
 }
 
 void position_move(Position *pos, int dx, int dy)
 {
-    pos->x += dx;
-    pos->y += dy;
+  pos->x += dx;
+  pos->y += dy;
 }

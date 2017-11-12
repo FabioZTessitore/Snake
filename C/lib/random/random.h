@@ -22,6 +22,6 @@ void random_init();
  * genera e restituisce un numero
  * compreso tra min incluso e max escluso
  */
-int random_between(int min, int max);
+int random_between(int min, int max /* escluso */);
 
 #endif

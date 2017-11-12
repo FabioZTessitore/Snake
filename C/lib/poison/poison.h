@@ -11,6 +11,9 @@
 #define VELENO 0
 #define FRUTTO 1
 
+#define MINLIFE 20
+#define MAXLIFE 100
+
 typedef struct {
   int type;
   int character;

@@ -8,15 +8,15 @@
  * Gestisce una lista di Poison
  */
 
-#include "../poison/poison.h"
+#include "poison.h"
 
 typedef struct {
     Poison *poisons;
-    int list_size;
+    int length;
     int *active;
 } PoisonsList;
 
-void poisons_list_init(PoisonsList *pl, int size);
+void poisons_list_init(PoisonsList *pl, int length);
 void poisons_list_dump(PoisonsList *pl);
 void poisons_list_destroy(PoisonsList *pl);
 void poisons_list_oldify(PoisonsList *pl);

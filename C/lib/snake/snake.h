@@ -1,7 +1,9 @@
+/* snake.h */
+
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include "../position/position.h"
+#include "position.h"
 
 #define SNAKE_MAX_LENGTH 100
 
@@ -21,12 +23,11 @@ int snake_get_len(Snake *snake);
 int snake_get_direction(Snake *snake);
 void snake_set_direction(Snake *snake, int direction);
 Position* snake_get_cell(Snake *snake, int index);
-void snake_set_cell(Snake *snake, int index, Position *pos);
 void snake_dump(Snake *snake);
 Position* snake_get_head_pos(Snake *snake);
 void snake_grow(Snake *snake);
-void snake_update_position(Snake *snake);
 void snake_shrink(Snake *snake);
+void snake_update_position(Snake *snake);
 int snake_eat_itself(Snake *snake);
 int snake_pos_in(Snake *snake, Position *pos);
 
